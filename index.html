@@ -1,0 +1,335 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body,div,p,span,h1,h2,h3,h4,button{font-family:'Cairo',var(--font-sans),sans-serif;direction:rtl;text-align:right}
+.gold{color:#c8962a}
+.hero{background:#0f1b2d;color:white;padding:2rem 1.25rem 2.5rem;text-align:center;border-radius:12px;margin-bottom:1.5rem}
+.hero-crown{font-size:36px;margin-bottom:.5rem}
+.hero h1{font-size:28px;font-weight:700;color:#f0c040;margin-bottom:.25rem;font-family:'Cairo',sans-serif}
+.hero .sub{font-size:14px;color:#9ab;margin-bottom:1rem;font-family:'Cairo',sans-serif}
+.hero-pill{background:rgba(240,192,64,.15);color:#f0c040;font-size:12px;padding:4px 14px;border-radius:20px;display:inline-block;margin-bottom:1.25rem;font-family:'Cairo',sans-serif}
+.btn-gold{background:#f0c040;color:#0f1b2d;border:none;padding:.75rem 1.5rem;border-radius:30px;font-size:14px;font-weight:700;cursor:pointer;display:block;width:100%;margin-bottom:.5rem;font-family:'Cairo',sans-serif}
+.btn-out{background:transparent;color:white;border:1px solid rgba(255,255,255,.3);padding:.65rem 1.5rem;border-radius:30px;font-size:13px;cursor:pointer;display:block;width:100%;font-family:'Cairo',sans-serif}
+.sec{margin-bottom:1.75rem}
+.sec-title{font-size:18px;font-weight:700;color:var(--color-text-primary);margin-bottom:.25rem;text-align:center;font-family:'Cairo',sans-serif}
+.sec-sub{font-size:12px;color:var(--color-text-secondary);text-align:center;margin-bottom:1rem;font-family:'Cairo',sans-serif}
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pain-item{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:10px;padding:.75rem;display:flex;align-items:flex-start;gap:8px}
+.pain-dot{width:8px;height:8px;border-radius:50%;background:#e24b4a;margin-top:5px;flex-shrink:0}
+.pain-text{font-size:12px;color:var(--color-text-secondary);line-height:1.5;font-family:'Cairo',sans-serif}
+.role-tabs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:1rem}
+.tab-btn{padding:.6rem .25rem;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;border:0.5px solid var(--color-border-secondary);background:var(--color-background-secondary);color:var(--color-text-secondary);font-family:'Cairo',sans-serif;text-align:center}
+.tab-btn.active-driver{background:#0f3460;color:white;border-color:#0f3460}
+.tab-btn.active-rider{background:#1d9e75;color:white;border-color:#1d9e75}
+.tab-btn.active-admin{background:#7f77dd;color:white;border-color:#7f77dd}
+.role-panel{border-radius:12px;padding:1.25rem;border:0.5px solid var(--color-border-tertiary)}
+.role-panel.driver{border-top:3px solid #0f3460}
+.role-panel.rider{border-top:3px solid #1d9e75}
+.role-panel.admin{border-top:3px solid #7f77dd}
+.role-header{display:flex;align-items:center;gap:10px;margin-bottom:1rem}
+.role-avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.role-avatar.d{background:#e6f1fb}
+.role-avatar.r{background:#e1f5ee}
+.role-avatar.a{background:#eeedfe}
+.role-title{font-size:15px;font-weight:700;color:var(--color-text-primary);font-family:'Cairo',sans-serif}
+.role-desc{font-size:12px;color:var(--color-text-secondary);font-family:'Cairo',sans-serif}
+.feat-list{list-style:none}
+.feat-list li{display:flex;align-items:flex-start;gap:8px;padding:.5rem 0;border-bottom:0.5px solid var(--color-border-tertiary);font-size:13px;color:var(--color-text-primary);font-family:'Cairo',sans-serif;line-height:1.5}
+.feat-list li:last-child{border-bottom:none}
+.feat-check{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.feat-check.d{background:#e6f1fb}
+.feat-check.r{background:#e1f5ee}
+.feat-check.a{background:#eeedfe}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat-card{background:#0f1b2d;border-radius:10px;padding:1rem;text-align:center}
+.stat-num{font-size:26px;font-weight:700;color:#f0c040;font-family:'Cairo',sans-serif}
+.stat-label{font-size:11px;color:#9ab;margin-top:3px;font-family:'Cairo',sans-serif}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.comp-card{border-radius:10px;padding:1rem}
+.comp-before{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary)}
+.comp-after{background:#0f1b2d;color:white}
+.comp-label{font-size:11px;font-weight:700;margin-bottom:.75rem;font-family:'Cairo',sans-serif}
+.comp-before .comp-label{color:var(--color-text-secondary)}
+.comp-after .comp-label{color:#f0c040}
+.comp-row{display:flex;align-items:flex-start;gap:6px;margin-bottom:.4rem;font-size:11px;font-family:'Cairo',sans-serif;line-height:1.4}
+.comp-before .comp-row{color:var(--color-text-secondary)}
+.comp-after .comp-row{color:#cde}
+.dot-r{width:5px;height:5px;border-radius:50%;background:#e24b4a;flex-shrink:0;margin-top:4px}
+.dot-g{width:5px;height:5px;border-radius:50%;background:#f0c040;flex-shrink:0;margin-top:4px}
+.steps-list{counter-reset:step}
+.step-item{display:flex;gap:12px;margin-bottom:1rem;align-items:flex-start}
+.step-num{width:32px;height:32px;border-radius:50%;background:#f0c040;color:#0f1b2d;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Cairo',sans-serif}
+.step-content{flex:1}
+.step-title{font-size:13px;font-weight:700;color:var(--color-text-primary);margin-bottom:2px;font-family:'Cairo',sans-serif}
+.step-desc{font-size:11px;color:var(--color-text-secondary);font-family:'Cairo',sans-serif;line-height:1.5}
+.plans-stack{display:flex;flex-direction:column;gap:12px}
+.plan-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;padding:1.25rem;position:relative}
+.plan-card.featured{border:2px solid #f0c040}
+.plan-badge{background:#f0c040;color:#0f1b2d;font-size:10px;font-weight:700;padding:2px 10px;border-radius:10px;position:absolute;top:-9px;right:1rem;font-family:'Cairo',sans-serif}
+.plan-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.75rem}
+.plan-name{font-size:14px;font-weight:700;color:var(--color-text-primary);font-family:'Cairo',sans-serif}
+.plan-price-box{text-align:left}
+.plan-old{font-size:11px;color:var(--color-text-secondary);text-decoration:line-through;font-family:'Cairo',sans-serif}
+.plan-price{font-size:22px;font-weight:700;color:#0f3460;font-family:'Cairo',sans-serif}
+.plan-period{font-size:10px;color:var(--color-text-secondary);font-family:'Cairo',sans-serif}
+.plan-feats{display:grid;grid-template-columns:1fr 1fr;gap:4px 12px}
+.plan-feat{font-size:11px;color:var(--color-text-secondary);display:flex;gap:5px;align-items:center;font-family:'Cairo',sans-serif}
+.chk{color:#1d9e75;font-size:12px}
+.final{background:#0f1b2d;border-radius:12px;padding:1.75rem 1.25rem;text-align:center;color:white}
+.final h2{font-size:18px;font-weight:700;color:#f0c040;margin-bottom:.5rem;font-family:'Cairo',sans-serif}
+.final p{font-size:12px;color:#9ab;margin-bottom:1.25rem;font-family:'Cairo',sans-serif}
+.wa-btn{background:#25d366;color:white;border:none;padding:.8rem 1.5rem;border-radius:30px;font-size:14px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font-family:'Cairo',sans-serif;transition:transform 0.2s}
+.wa-btn:hover{transform:scale(1.05)}
+.hero-logo{width:80px;height:80px;margin-bottom:0.75rem;border-radius:50%;object-fit:cover;border:2px solid #f0c040;box-shadow:0 0 15px rgba(240,192,64,0.3)}
+.plan-card,.role-panel,.pain-item,.stat-card,.comp-card{transition:transform 0.2s, box-shadow 0.2s}
+.plan-card:hover,.role-panel:hover,.pain-item:hover,.stat-card:hover,.comp-card:hover{transform:translateY(-2px);box-shadow:0 4px 15px rgba(0,0,0,0.1)}
+.btn-gold{transition:all 0.2s}
+.btn-gold:hover{background:#d4a530;transform:scale(1.03)}
+.btn-out{transition:all 0.2s}
+.btn-out:hover{background:rgba(255,255,255,0.1);transform:scale(1.03)}
+
+@media (max-width: 600px) {
+  .pain-grid, .stats-grid, .compare-grid, .plan-feats { grid-template-columns: 1fr; }
+  .hero { padding: 1.5rem 1rem 2rem; margin-bottom: 1rem; }
+  .hero h1 { font-size: 22px; }
+  .hero-logo { width: 60px; height: 60px; }
+  .stat-num { font-size: 22px; }
+  .role-tabs { gap: 4px; }
+  .tab-btn { font-size: 11px; padding: .5rem .2rem; }
+  .plan-card { padding: 1rem; }
+}
+</style>
+
+<div class="hero">
+  <img src="images/logo.png" alt="شعار تطبيق القيصر" class="hero-logo">
+  <h1>تطبيق القيصر</h1>
+  <div class="sub">إدارة ذكية لرحلات عمان &#8592; الكرك</div>
+  <div class="hero-pill">نظام متكامل للسائقين والركاب والإدارة</div>
+  <button class="btn-gold" onclick="sendPrompt('أريد الاشتراك في تطبيق القيصر')">اشترك الآن في التطبيق &#x2197;</button>
+  <button class="btn-out" onclick="sendPrompt('كيف يعمل تطبيق القيصر؟')">شاهد كيف يعمل</button>
+</div>
+
+<div class="sec">
+  <div class="sec-title">المشاكل التي يحلها التطبيق</div>
+  <div class="sec-sub">كل هذا يختفي من أول يوم</div>
+  <div class="pain-grid">
+    <div class="pain-item"><div class="pain-dot"></div><p class="pain-text">فوضى قروبات الواتساب والفيسبوك</p></div>
+    <div class="pain-item"><div class="pain-dot"></div><p class="pain-text">ضياع وقت التنسيق اليدوي</p></div>
+    <div class="pain-item"><div class="pain-dot"></div><p class="pain-text">صعوبة تتبع الإيرادات والمصاريف</p></div>
+    <div class="pain-item"><div class="pain-dot"></div><p class="pain-text">فقدان ركاب بسبب بطء الرد</p></div>
+    <div class="pain-item"><div class="pain-dot"></div><p class="pain-text">لا توجد إحصائيات أو تقارير</p></div>
+    <div class="pain-item"><div class="pain-dot"></div><p class="pain-text">صعوبة متابعة مصاريف البنزين والصيانة</p></div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-title">مزايا تفصيلية لكل طرف</div>
+  <div class="sec-sub">اختر لترى ما يخصك</div>
+  <div class="role-tabs">
+    <button class="tab-btn active-driver" id="tab-d" onclick="showRole('driver')">السائق</button>
+    <button class="tab-btn" id="tab-r" onclick="showRole('rider')">الراكب</button>
+    <button class="tab-btn" id="tab-a" onclick="showRole('admin')">الأدمن</button>
+  </div>
+
+  <div id="panel-driver" class="role-panel driver">
+    <div class="role-header">
+      <div class="role-avatar d">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#185fa5" stroke-width="2"><circle cx="12" cy="7" r="4"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/></svg>
+      </div>
+      <div>
+        <div class="role-title">لوحة السائق</div>
+        <div class="role-desc">كل رحلاتك ومصاريفك في مكان واحد</div>
+      </div>
+    </div>
+    <ul class="feat-list">
+      <li><div class="feat-check d"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#185fa5" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>استقبال طلبات الرحلة مباشرة على هاتفه بإشعار فوري</li>
+      <li><div class="feat-check d"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#185fa5" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>رؤية أسماء الركاب ومناطقهم قبل الانطلاق</li>
+      <li><div class="feat-check d"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#185fa5" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>تغيير حالته: متاح، مشغول، ينقصه راكب</li>
+      <li><div class="feat-check d"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#185fa5" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>تسجيل مصاريف البنزين لكل رحلة تلقائياً</li>
+      <li><div class="feat-check d"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#185fa5" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>تسجيل مصاريف الصيانة وربطها بالسيارة</li>
+      <li><div class="feat-check d"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#185fa5" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>شات مباشر مع الراكب وزر واتساب بضغطة</li>
+      <li><div class="feat-check d"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#185fa5" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>سجل كامل برحلاته وأرباحه الشهرية</li>
+      <li><div class="feat-check d"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#185fa5" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>إدارة الأمانات: استلام وتسليم مع توثيق</li>
+    </ul>
+  </div>
+
+  <div id="panel-rider" class="role-panel rider" style="display:none">
+    <div class="role-header">
+      <div class="role-avatar r">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0f6e56" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <div>
+        <div class="role-title">تجربة الراكب</div>
+        <div class="role-desc">حجز سهل وتتبع مريح</div>
+      </div>
+    </div>
+    <ul class="feat-list">
+      <li><div class="feat-check r"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#0f6e56" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>حجز مقعد بضغطة واحدة من أي منطقة بالكرك أو عمان</li>
+      <li><div class="feat-check r"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#0f6e56" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>معرفة وقت الانطلاق والوصول المتوقع مسبقاً</li>
+      <li><div class="feat-check r"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#0f6e56" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>تتبع موقع السيارة مباشرة لحظة بلحظة</li>
+      <li><div class="feat-check r"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#0f6e56" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>معرفة المبلغ بدقة قبل الحجز حسب المنطقة</li>
+      <li><div class="feat-check r"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#0f6e56" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>دفع إلكتروني عبر كليك أو نقداً عند الوصول</li>
+      <li><div class="feat-check r"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#0f6e56" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>التواصل مع السائق عبر شات داخلي أو واتساب</li>
+      <li><div class="feat-check r"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#0f6e56" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>إرسال أمانة مع تحديد الحجم والمبلغ مسبقاً</li>
+      <li><div class="feat-check r"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#0f6e56" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>سجل رحلاته السابقة وإعادة الحجز بضغطة</li>
+    </ul>
+  </div>
+
+  <div id="panel-admin" class="role-panel admin" style="display:none">
+    <div class="role-header">
+      <div class="role-avatar a">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#534ab7" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      </div>
+      <div>
+        <div class="role-title">لوحة الأدمن (المدير)</div>
+        <div class="role-desc">تحكم كامل بكل شيء لحظة بلحظة</div>
+      </div>
+    </div>
+    <ul class="feat-list">
+      <li><div class="feat-check a"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#534ab7" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>متابعة جميع السائقين وحالتهم في الوقت الفعلي</li>
+      <li><div class="feat-check a"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#534ab7" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>رؤية كل رحلة: السائق، الركاب، المسار، والمبلغ</li>
+      <li><div class="feat-check a"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#534ab7" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>متابعة مصاريف البنزين لكل سائق وكل سيارة</li>
+      <li><div class="feat-check a"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#534ab7" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>سجل مصاريف الصيانة مرتبة بالتاريخ والسيارة</li>
+      <li><div class="feat-check a"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#534ab7" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>تقارير مالية يومية وشهرية: الدخل الصافي بعد المصاريف</li>
+      <li><div class="feat-check a"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#534ab7" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>معرفة أسماء جميع الركاب مع من خرجوا ومتى</li>
+      <li><div class="feat-check a"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#534ab7" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>إدارة سعر كل رحلة حسب المنطقة والمسافة</li>
+      <li><div class="feat-check a"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#534ab7" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>متابعة الأمانات: من أرسلها، لمن، والمبلغ</li>
+      <li><div class="feat-check a"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#534ab7" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>إضافة سائقين جدد وإدارة صلاحياتهم</li>
+    </ul>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-title">النتائج المتوقعة</div>
+  <div class="sec-sub">أرقام حقيقية من أول شهر</div>
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-num">80%</div><div class="stat-label">توفير في وقت التنسيق</div></div>
+    <div class="stat-card"><div class="stat-num">+30%</div><div class="stat-label">زيادة في عدد الرحلات</div></div>
+    <div class="stat-card"><div class="stat-num">0</div><div class="stat-label">فوضى في القروبات</div></div>
+    <div class="stat-card"><div class="stat-num">24/7</div><div class="stat-label">حجوزات بدون توقف</div></div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-title">قبل وبعد التطبيق</div>
+  <div class="compare-grid">
+    <div class="comp-card comp-before">
+      <div class="comp-label">الآن</div>
+      <div class="comp-row"><div class="dot-r"></div>تنسيق يدوي عبر القروبات</div>
+      <div class="comp-row"><div class="dot-r"></div>لا توجد سجلات مالية</div>
+      <div class="comp-row"><div class="dot-r"></div>ضياع طلبات الركاب</div>
+      <div class="comp-row"><div class="dot-r"></div>لا متابعة للمصاريف</div>
+      <div class="comp-row"><div class="dot-r"></div>تواصل بطيء ومشتت</div>
+    </div>
+    <div class="comp-card comp-after">
+      <div class="comp-label">مع التطبيق</div>
+      <div class="comp-row"><div class="dot-g"></div>حجز تلقائي ذكي</div>
+      <div class="comp-row"><div class="dot-g"></div>تقارير مالية لحظية</div>
+      <div class="comp-row"><div class="dot-g"></div>إشعارات فورية للسائق</div>
+      <div class="comp-row"><div class="dot-g"></div>تتبع بنزين وصيانة</div>
+      <div class="comp-row"><div class="dot-g"></div>شات + واتساب مدمج</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-title">كيف يعمل؟</div>
+  <div class="sec-sub">4 خطوات بسيطة</div>
+  <div class="steps-list">
+    <div class="step-item"><div class="step-num">1</div><div class="step-content"><div class="step-title">الراكب يحجز</div><div class="step-desc">يختار منطقته والوقت، النظام يحسب السعر تلقائياً ويقبل الدفع</div></div></div>
+    <div class="step-item"><div class="step-num">2</div><div class="step-content"><div class="step-title">النظام ينسق تلقائياً</div><div class="step-desc">يجمع 4 ركاب من مناطق مختلفة ويرسل الرحلة للسائق المتاح</div></div></div>
+    <div class="step-item"><div class="step-num">3</div><div class="step-content"><div class="step-title">السائق ينطلق</div><div class="step-desc">يرى اسم كل راكب ومنطقته، والتتبع يبدأ تلقائياً</div></div></div>
+    <div class="step-item"><div class="step-num">4</div><div class="step-content"><div class="step-title">المدير يتابع الكل</div><div class="step-desc">كل رحلة، كل مصروف، كل دينار — في لوحة تحكم واحدة</div></div></div>
+  </div>
+</div>
+
+<div class="sec plans-stack">
+  <div class="sec-title">اختر الخطة المناسبة</div>
+  <div class="sec-sub" style="margin-bottom:.75rem">مرونة كاملة — ابدأ صغيراً وكبّر</div>
+
+  <div class="plan-card">
+    <div class="plan-top">
+      <div class="plan-name">الأساسية</div>
+      <div class="plan-price-box"><div class="plan-price">59 JD</div><div class="plan-period">شهرياً</div></div>
+    </div>
+    <div class="plan-feats">
+      <div class="plan-feat"><span class="chk">&#10003;</span>حجز الرحلات</div>
+      <div class="plan-feat"><span class="chk">&#10003;</span>لوحة التحكم</div>
+      <div class="plan-feat"><span class="chk">&#10003;</span>شات السائق</div>
+      <div class="plan-feat"><span class="chk">&#10003;</span>نظام الأمانات</div>
+    </div>
+  </div>
+
+  <div class="plan-card featured">
+    <div class="plan-badge">الأكثر طلباً</div>
+    <div class="plan-top">
+      <div class="plan-name">المتكاملة</div>
+      <div class="plan-price-box"><div class="plan-price">99 JD</div><div class="plan-period">شهرياً</div></div>
+    </div>
+    <div class="plan-feats">
+      <div class="plan-feat"><span class="chk">&#10003;</span>كل الأساسية</div>
+      <div class="plan-feat"><span class="chk">&#10003;</span>تتبع GPS</div>
+      <div class="plan-feat"><span class="chk">&#10003;</span>دفع إلكتروني</div>
+      <div class="plan-feat"><span class="chk">&#10003;</span>تقارير مالية</div>
+      <div class="plan-feat"><span class="chk">&#10003;</span>مصاريف البنزين</div>
+      <div class="plan-feat"><span class="chk">&#10003;</span>واتساب مدمج</div>
+    </div>
+  </div>
+
+  <div class="plan-card">
+    <div class="plan-top">
+      <div class="plan-name">امتلك التطبيق</div>
+      <div class="plan-price-box">
+        <div class="plan-old">1,200 JD</div>
+        <div class="plan-price">800 JD</div>
+        <div class="plan-period">مرة واحدة فقط</div>
+      </div>
+    </div>
+    <div class="plan-feats">
+      <div class="plan-feat"><span class="chk">&#10003;</span>باسمك بالكامل</div>
+      <div class="plan-feat"><span class="chk">&#10003;</span>جميع المزايا</div>
+      <div class="plan-feat"><span class="chk">&#10003;</span>دعم فني سنة</div>
+      <div class="plan-feat"><span class="chk">&#10003;</span>قابل للتوسع</div>
+    </div>
+  </div>
+</div>
+
+<div class="final">
+  <h2>جاهز ترفع مكتب القيصر لمستوى أعلى؟</h2>
+  <p>تواصل معنا الآن للبدء في استخدام التطبيق وتغيير طريقة عملك كلياً</p>
+  <button class="wa-btn" onclick="openLink('https://wa.me/962797241645?text=مرحباً، أريد الاشتراك في تطبيق القيصر')">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="white" style="width:18px;height:18px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.549 4.122 1.516 5.856L0 24l6.293-1.493A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.82 9.82 0 01-5.003-1.368l-.359-.214-3.735.886.917-3.647-.234-.374A9.79 9.79 0 012.182 12c0-5.42 4.398-9.818 9.818-9.818s9.818 4.398 9.818 9.818-4.398 9.818-9.818 9.818z"/></svg>
+    تواصل الآن عبر واتساب
+  </button>
+</div>
+
+<script>
+function showRole(role){
+  document.getElementById('panel-driver').style.display='none';
+  document.getElementById('panel-rider').style.display='none';
+  document.getElementById('panel-admin').style.display='none';
+  document.getElementById('tab-d').className='tab-btn';
+  document.getElementById('tab-r').className='tab-btn';
+  document.getElementById('tab-a').className='tab-btn';
+  if(role==='driver'){
+    document.getElementById('panel-driver').style.display='block';
+    document.getElementById('tab-d').className='tab-btn active-driver';
+  } else if(role==='rider'){
+    document.getElementById('panel-rider').style.display='block';
+    document.getElementById('tab-r').className='tab-btn active-rider';
+  } else {
+    document.getElementById('panel-admin').style.display='block';
+    document.getElementById('tab-a').className='tab-btn active-admin';
+  }
+}
+
+function openLink(url) {
+  window.open(url, '_blank');
+}
+
+function sendPrompt(text) {
+  const waUrl = 'https://wa.me/962797241645?text=' + encodeURIComponent(text);
+  window.open(waUrl, '_blank');
+}
+</script>
